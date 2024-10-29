@@ -1,0 +1,28 @@
+service: backend-agenda
+
+# Remove a linha frameworkVersion: '3'
+# Ou, se quiser especificar compatibilidade:
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+
+plugins:
+  - serverless-offline
+
+functions:
+  getAgendas:
+    handler: src/agenda/controller/agendaController.getAgendas
+    events:
+      - http:
+          path: agendas
+          method: get
+
+  postAgendamento:
+    handler: src/agendamento/controller/agendamentoController.postAgendamento
+    events:
+      - http:
+          path: agendamento
+          method: post
